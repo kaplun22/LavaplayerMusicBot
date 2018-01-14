@@ -10,10 +10,6 @@ import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import javax.security.auth.login.LoginException;
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
 public class App implements Runnable{
 
     private final JDA jda;
