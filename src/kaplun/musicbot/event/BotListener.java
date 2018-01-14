@@ -43,7 +43,7 @@ public class BotListener implements EventListener {
     }
 
     private void onGuildMemberLeave(GuildMemberLeaveEvent event){
-        event.getGuild().getPublicChannel().sendMessage(event.getUser().getAsMention()+" Свалил из бара нахуй").queue();
+        event.getGuild().getPublicChannel().sendMessage(event.getUser().getAsMention()+" Покинул бар").queue();
     }
 
 }

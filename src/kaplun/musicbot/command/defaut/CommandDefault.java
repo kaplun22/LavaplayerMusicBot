@@ -43,7 +43,7 @@ public class CommandDefault {
 
         User target = message.getMentionedUsers().get(0);
         commandMap.addUserPower(target, power);
-        channel.sendMessage("Le power de "+target.getAsMention()+" est maintenant de "+power).queue();
+        channel.sendMessage(" "+target.getAsMention()+"  "+power).queue();
     }
 
     @Command(name="info",type= Command.ExecutorType.USER)

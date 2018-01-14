@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 public @interface Command {
 
     public String name();
-    public String description() default "Sans description.";
+    public String description() default "";
     public ExecutorType type() default ExecutorType.ALL;
 
     public int power() default 0;

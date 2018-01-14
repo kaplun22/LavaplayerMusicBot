@@ -141,7 +141,7 @@ public final class CommandMap {
         try{
             execute(((SimpleCommand)object[0]), command,(String[])object[1], message);
         }catch(Exception exception){
-            System.out.println("e "+((SimpleCommand)object[0]).getMethod().getName()+" Шалом алейхум нахуй");
+            System.out.println("e "+((SimpleCommand)object[0]).getMethod().getName()+"exeption");
         }
         return true;
     }
