@@ -18,8 +18,12 @@ public class HelpCommand {
     private void help(User user, MessageChannel channel, Guild guild) {
 
 
-        channel.sendMessage(user.getAsMention() + "\n=play + link to youtube/soundcloud/bandcamp.\n = search youtube + song name \n =skip to skip track \n =clear to clear the playlist \n" +
-                "").queue();
+        channel.sendMessage(user.getAsMention() + "\n=play + link to youtube/soundcloud/bandcamp." +
+                "\n = search youtube + song name " +
+                "\n =skip to skip track " +
+                "\n =clear to clear the playlist " +
+                "\n=disconnect to kick bot from voice channel" +
+                "\n=volume+number to set music volume").queue();
 
     }
 }
