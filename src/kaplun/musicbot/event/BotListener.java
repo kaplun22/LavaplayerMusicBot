@@ -27,7 +27,7 @@ public class BotListener implements EventListener {
     private void onMessage(MessageReceivedEvent event){
         if(event.getAuthor().equals(event.getJDA().getSelfUser())) return;
 
-        String message = event.getMessage().getContentRaw();
+        String message = event.getMessage().getContent();
         if(message.startsWith(commandMap.getTag())){
             message = message.replaceFirst(commandMap.getTag(), "");
             if(commandMap.commandUser(event.getAuthor(), message, event.getMessage())){
@@ -39,11 +39,11 @@ public class BotListener implements EventListener {
     }
 
     private void onGuildMemberJoin(GuildMemberJoinEvent event){
-        event.getGuild().getDefaultChannel().sendMessage(event.getUser().getAsMention()+" Добро пожаловать в бар").queue();
+        event.getGuild().getPublicChannel().sendMessage(event.getUser().getAsMention()+" Добро пожаловать в бар").queue();
     }
 
     private void onGuildMemberLeave(GuildMemberLeaveEvent event){
-        event.getGuild().getDefaultChannel().sendMessage(event.getUser().getAsMention()+" Свалил из бара нахуй").queue();
+        event.getGuild().getPublicChannel().sendMessage(event.getUser().getAsMention()+" Свалил из бара нахуй").queue();
     }
 
 }

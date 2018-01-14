@@ -70,7 +70,7 @@ public class CommandDefault {
             builder.append(str);
         }
 
-        jda.getPresence().setGame(Game.playing("=help"));
+        jda.getPresence().setGame(Game.of("=help"));
     }
 
     @Command(name="shutdown")

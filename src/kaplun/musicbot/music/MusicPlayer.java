@@ -38,6 +38,10 @@ public class MusicPlayer {
     }
 
     public synchronized void skipTrack(){
-        listener.nextTrack();
+        try {
+            listener.nextTrack();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
