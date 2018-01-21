@@ -1,6 +1,7 @@
 package kaplun.musicbot.music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
@@ -27,6 +28,9 @@ public class MusicManager {
         if(!players.containsKey(guild.getId())) players.put(guild.getId(), new MusicPlayer(manager.createPlayer(), guild));
         return players.get(guild.getId());
     }
+
+
+
 
     public void loadTrack(final TextChannel channel, final String source){
         MusicPlayer player = getPlayer(channel.getGuild());

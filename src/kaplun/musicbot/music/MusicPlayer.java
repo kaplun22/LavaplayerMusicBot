@@ -36,6 +36,13 @@ public class MusicPlayer {
     public synchronized void playTrack(AudioTrack track){
         listener.queue(track);
     }
+    public synchronized void pauseTrack(AudioPlayer player){
+        player.setPaused(true);
+    }
+
+    public synchronized void unPauseTrack(AudioPlayer player){
+        player.setPaused(false);
+    }
 
     public synchronized void skipTrack(){
         try {
