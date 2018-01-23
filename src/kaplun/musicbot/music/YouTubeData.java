@@ -90,9 +90,6 @@ public  String search(String query){
      * Prompt the user to enter a query term and return the user-specified term.
      */
     private static String getInputQuery(String inputQuery) throws IOException {
-
-
-
         if (inputQuery.length() < 1) {
             // Use the string "YouTube Developers Live" as a default.
             inputQuery = "YouTube Developers Live";
