@@ -27,17 +27,6 @@ public class YouTubeData {
     private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
 
 public  String search(String query){
-    Properties properties = new Properties();
-        try {
-        InputStream in = YouTube.Search.class.getResourceAsStream("/" );
-        properties.load(in);
-
-    } catch (IOException e) {
-        System.err.println("There was an error reading "  + ": " + e.getCause()
-                + " : " + e.getMessage());
-        System.exit(1);
-    }
-
         try {
         // This object is used to make YouTube Data API requests. The last
         // argument is required, but since we don't need anything
@@ -57,7 +46,7 @@ public  String search(String query){
         // Set your developer key from the {{ Google Cloud Console }} for
         // non-authenticated requests. See:
         // {{ https://cloud.google.com/console }}
-        String apiKey = "Token";
+        String apiKey = "AIzaSyBrvmtWYQqJQlf5wCmigMm3SKCD3R8IDzQ";
         search.setKey(apiKey);
         search.setQ(queryTerm);
 
@@ -90,14 +79,14 @@ public  String search(String query){
      * Prompt the user to enter a query term and return the user-specified term.
      */
     private static String getInputQuery(String inputQuery) throws IOException {
+
+
+
         if (inputQuery.length() < 1) {
             // Use the string "YouTube Developers Live" as a default.
             inputQuery = "YouTube Developers Live";
         }
         return inputQuery;
     }
-
-
-
-
 }
+
