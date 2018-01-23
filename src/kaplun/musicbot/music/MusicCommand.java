@@ -1,11 +1,14 @@
 package kaplun.musicbot.music;
 
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.internal.filter.ValueNode;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import kaplun.musicbot.command.Command;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.VoiceChannel;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -60,64 +63,15 @@ public class MusicCommand {
     }
 
 
-    @Command(name = "МинусУши", type = Command.ExecutorType.USER)
-    private void noEars(Guild guild, TextChannel textChannel, User user, String command) {
-
-
-        String author = guild.getMember(user).toString();
-        String[] getNickname = author.split(":");
-        String[] nickname = getNickname[1].split(" ");
-
-
-        System.out.println(author);
-        System.out.println(nickname[0]);
-
-        if (guild == null) return;
-
-        if (author.contains("kaplun")) {
-            if (!guild.getAudioManager().isConnected() && !guild.getAudioManager().isAttemptingToConnect()) {
-                VoiceChannel voiceChannel = guild.getMember(user).getVoiceState().getChannel();
-                if (voiceChannel == null) {
-                    textChannel.sendMessage("Bot connected.").queue();
-                    return;
-                }
-                guild.getAudioManager().openAudioConnection(voiceChannel);
-            }
-
-
-            manager.loadTrack(textChannel, "https://www.youtube.com/watch?v=EKjkUvlm7Ng");
-        } else {
-            textChannel.sendMessage(nickname + " ПОШЕЛ НАХУЙ").queue();
-        }
-    }
-
-
-    @Command(name = "MLG", type = Command.ExecutorType.USER)
-    private void MLG(Guild guild, TextChannel textChannel, User user, String command) {
-
-        if (guild == null) return;
-
-
-        if (!guild.getAudioManager().isConnected() && !guild.getAudioManager().isAttemptingToConnect()) {
-            VoiceChannel voiceChannel = guild.getMember(user).getVoiceState().getChannel();
-            if (voiceChannel == null) {
-                textChannel.sendMessage("Bot connected.").queue();
-                return;
-            }
-            guild.getAudioManager().openAudioConnection(voiceChannel);
-        }
-
-        manager.loadTrack(textChannel, "https://www.youtube.com/watch?v=Tqo-v-zeZ24");
-    }
-
 
     @Command(name = "search", type = Command.ExecutorType.USER)
     private void searchForVideos(Guild guild, TextChannel textChannel, User user, String command) throws Exception {
-
-        Document doc = Jsoup.connect("https://www.google.com/search?q=" + command).userAgent("Mozilla/5.0").timeout(5000).get();
-
-        Element el = doc.getElementsByAttributeValue("class","kv").first();
-
+        String[] arr = command.split(" ",2);
+        String query =arr[1];
+        YouTubeData youTubeData = new YouTubeData();
+        String jsonVideoId = youTubeData.search(query);
+        String jsonExp = "$.id.videoId";
+        String videoID = JsonPath.read(jsonVideoId,jsonExp);
 
         if (guild == null) return;
 
@@ -131,9 +85,10 @@ public class MusicCommand {
             guild.getAudioManager().openAudioConnection(voiceChannel);
         }
 
-        manager.loadTrack(textChannel, el.text());
-
+        manager.loadTrack(textChannel, "https://www.youtube.com/watch?v="+videoID);
     }
+
+
 
     @Command(name="summon",type = Command.ExecutorType.USER)
     private void summon (Guild guild, TextChannel textChannel, User user ,String command){
@@ -163,23 +118,6 @@ public class MusicCommand {
         manager.getPlayer(guild).getAudioPlayer().setPaused(false);
     }
 
-    @Command(name = "испанцы", type = Command.ExecutorType.USER)
-    private void ispanci (Guild guild, TextChannel textChannel, User user, String command) {
-
-        if (guild == null) return;
-
-
-        if (!guild.getAudioManager().isConnected() && !guild.getAudioManager().isAttemptingToConnect()) {
-            VoiceChannel voiceChannel = guild.getMember(user).getVoiceState().getChannel();
-            if (voiceChannel == null) {
-                textChannel.sendMessage("Bot connected.").queue();
-                return;
-            }
-            guild.getAudioManager().openAudioConnection(voiceChannel);
-        }
-
-        manager.loadTrack(textChannel, "https://www.youtube.com/watch?v=BU2NWMh9y7E");
-    }
 
 }
 
