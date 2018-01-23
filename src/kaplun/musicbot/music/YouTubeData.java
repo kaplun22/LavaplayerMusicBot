@@ -57,7 +57,7 @@ public  String search(String query){
         // Set your developer key from the {{ Google Cloud Console }} for
         // non-authenticated requests. See:
         // {{ https://cloud.google.com/console }}
-        String apiKey = "AIzaSyBrvmtWYQqJQlf5wCmigMm3SKCD3R8IDzQ";
+        String apiKey = "Token";
         search.setKey(apiKey);
         search.setQ(queryTerm);
 
