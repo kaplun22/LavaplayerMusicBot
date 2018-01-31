@@ -61,12 +61,5 @@ public class CommandDefault {
 
         channel.sendMessage(builder.build()).queue();
     }
-
-
-    @Command(name="shutdown")
-    private  void shutdown (JDA jda){
-
-
-    }
 }
 
