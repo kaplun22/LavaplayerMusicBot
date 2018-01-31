@@ -62,16 +62,6 @@ public class CommandDefault {
         channel.sendMessage(builder.build()).queue();
     }
 
-    @Command(name="game",power=100)
-    private void game(JDA jda, String[] args){
-        StringBuilder builder = new StringBuilder();
-        for(String str : args){
-            if(builder.length() > 0) builder.append(" ");
-            builder.append(str);
-        }
-
-        jda.getPresence().setGame(Game.of("=help"));
-    }
 
     @Command(name="shutdown")
     private  void shutdown (JDA jda){
