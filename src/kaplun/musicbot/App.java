@@ -20,7 +20,7 @@ public class App implements Runnable{
     private boolean running;
 
     public App() throws LoginException, IllegalArgumentException, RateLimitedException {
-        jda = new JDABuilder(AccountType.BOT).setToken("MjM3OTA0MTc1MDg4OTI2NzIx.DWBB5w.C_tgCwdL351QxV33XFUi3jSSKVk").buildAsync();
+        jda = new JDABuilder(AccountType.BOT).setToken("Token").buildAsync();
         jda.addEventListener(new BotListener(commandMap));
         jda.getPresence().setGame(Game.of("=help"));
         System.out.println("Bot connected.");
