@@ -63,33 +63,35 @@ public class MusicCommand {
     }
 
 
-
     @Command(name = "search", type = Command.ExecutorType.USER)
     private void searchForVideos(Guild guild, TextChannel textChannel, User user, String command) throws Exception {
-        String[] arr = command.split(" ",2);
-        String query =arr[1];
-        YouTubeData youTubeData = new YouTubeData();
-        String jsonVideoId = youTubeData.search(query);
-        String jsonExp = "$.id.videoId";
-        String videoID = JsonPath.read(jsonVideoId,jsonExp);
-
-        if (guild == null) return;
+        try {
 
 
-        if (!guild.getAudioManager().isConnected() && !guild.getAudioManager().isAttemptingToConnect()) {
-            VoiceChannel voiceChannel = guild.getMember(user).getVoiceState().getChannel();
-            if (voiceChannel == null) {
-                textChannel.sendMessage("Bot connected.").queue();
-                return;
+            String[] arr = command.split(" ", 2);
+            String query = arr[1];
+            YouTubeData youTubeData = new YouTubeData();
+            String jsonVideoId = youTubeData.search(query);
+            String jsonExp = "$.id.videoId";
+            String videoID = JsonPath.read(jsonVideoId, jsonExp);
+
+            if (guild == null) return;
+
+
+            if (!guild.getAudioManager().isConnected() && !guild.getAudioManager().isAttemptingToConnect()) {
+                VoiceChannel voiceChannel = guild.getMember(user).getVoiceState().getChannel();
+                if (voiceChannel == null) {
+                    textChannel.sendMessage("Please enter the voice chanel").queue();
+                    return;
+                }
+                guild.getAudioManager().openAudioConnection(voiceChannel);
             }
-            guild.getAudioManager().openAudioConnection(voiceChannel);
+
+            manager.loadTrack(textChannel, "https://www.youtube.com/watch?v=" + videoID);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
-        manager.loadTrack(textChannel, "https://www.youtube.com/watch?v="+videoID);
-    }
-
-
-
+        }
     @Command(name="summon",type = Command.ExecutorType.USER)
     private void summon (Guild guild, TextChannel textChannel, User user ,String command){
         VoiceChannel voiceChannel = guild.getMember(user).getVoiceState().getChannel();

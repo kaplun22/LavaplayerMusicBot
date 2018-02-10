@@ -2,9 +2,10 @@ package kaplun.musicbot;
 
 import kaplun.musicbot.command.CommandMap;
 import kaplun.musicbot.event.BotListener;
-import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 
 import javax.security.auth.login.LoginException;
@@ -19,8 +20,9 @@ public class App implements Runnable{
     private boolean running;
 
     public App() throws LoginException, IllegalArgumentException, RateLimitedException {
-        jda = new JDABuilder(AccountType.BOT).setToken("Token").buildAsync();
+        jda = new JDABuilder(AccountType.BOT).setToken("MjM3OTA0MTc1MDg4OTI2NzIx.DWBB5w.C_tgCwdL351QxV33XFUi3jSSKVk").buildAsync();
         jda.addEventListener(new BotListener(commandMap));
+        jda.getPresence().setGame(Game.of("=help"));
         System.out.println("Bot connected.");
     }
 

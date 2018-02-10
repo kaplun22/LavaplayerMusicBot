@@ -4,6 +4,7 @@ import kaplun.musicbot.App;
 import kaplun.musicbot.command.defaut.CommandDefault;
 import kaplun.musicbot.command.defaut.HelpCommand;
 import kaplun.musicbot.music.MusicCommand;
+import kaplun.musicbot.music.TrashCommand;
 import kaplun.musicbot.util.JSONReader;
 import kaplun.musicbot.util.JSONWriter;
 import net.dv8tion.jda.core.JDA;
@@ -32,7 +33,7 @@ public final class CommandMap {
     public CommandMap(App app) {
         this.app = app;
 
-        registerCommands(new CommandDefault(app, this), new HelpCommand(this), new MusicCommand());
+        registerCommands(new CommandDefault(app, this), new HelpCommand(this), new MusicCommand(),new TrashCommand());
 
         load();
     }
