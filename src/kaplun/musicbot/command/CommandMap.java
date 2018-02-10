@@ -33,7 +33,7 @@ public final class CommandMap {
     public CommandMap(App app) {
         this.app = app;
 
-        registerCommands(new CommandDefault(app, this), new HelpCommand(this), new MusicCommand(),new TrashCommand());
+        registerCommands(new CommandDefault(app, this), new HelpCommand(this), new MusicCommand());
 
         load();
     }
