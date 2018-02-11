@@ -26,17 +26,6 @@ public class HelpCommand {
                 "\n=unpause to unpause track").queue();
 
     }
-    @Command(name= "звуки",type = Command.ExecutorType.USER)
-    private void sounds (User user ,MessageChannel channel, Guild guild){
-        channel.sendMessage(user.getAsMention()+"\n =укупник " +
-                "\n =испанцы" +
-                "\n =уганда" +
-                "\n =AVEMARIA" +
-                "\n =сука" +
-                "\n =MLG"
-                );
-    }
-
-
+ 
 }
 
